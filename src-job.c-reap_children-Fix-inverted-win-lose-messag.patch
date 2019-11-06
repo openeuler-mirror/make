@@ -1,0 +1,23 @@
+From e2234bc1abe13bf3e3c4eb003b19e4d3cce188f3 Mon Sep 17 00:00:00 2001
+From: Paul Smith <psmith@gnu.org>
+Date: Sat, 4 Aug 2018 19:05:29 -0400
+Subject: [PATCH 095/104] * src/job.c (reap_children): Fix inverted win/lose
+ message.
+
+---
+ job.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+--- a/job.c	2019-04-10 23:53:41.293814695 -0400
++++ b/job.c	2019-04-10 23:57:34.736814695 -0400
+@@ -828,8 +828,8 @@ reap_children (int block, int err)
+         continue;
+ 
+       DB (DB_JOBS, (exit_sig == 0 && exit_code == 0
+-                    ? _("Reaping losing child %p PID %s %s\n")
+-                    : _("Reaping winning child %p PID %s %s\n"),
++                    ? _("Reaping winning child %p PID %s %s\n")
++                    : _("Reaping losing child %p PID %s %s\n"),
+                     c, pid2str (c->pid), c->remote ? _(" (remote)") : ""));
+ 
+       /* If we have started jobs in this second, remove one.  */

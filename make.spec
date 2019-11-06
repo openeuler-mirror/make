@@ -1,20 +1,31 @@
 Name:		make
 Epoch: 		1
-Version:	4.2.90
-Release:        2
+Version:	4.2.1
+Release:        11
 Summary:	A tool which controls the generation of executables and non-source files of a program
 License:	GPLv3+
 URL:		http://www.gnu.org/software/make/
-Source0:	ftp://ftp.gnu.org/gnu/make/%{name}-%{version}.tar.gz
+Source0:	http://ftp.gnu.org/gnu/%{name}/%{name}-%{version}.tar.bz2
 
-Patch0:		make-4.0-newlines.patch
-Patch1:		make-4.0-noclock_gettime.patch
-Patch2:		make-4.0-weird-shell.patch
-Patch3:		make-4.2-getcwd.patch
-Patch4:		make-4.2-j8k.patch
+Patch0:         make-4.0-newlines.patch
+Patch1:         make-4.0-noclock_gettime.patch
+Patch2:         make-4.0-weird-shell.patch
+Patch3:         make-4.2-getcwd.patch
+Patch4:         make-4.2-j8k.patch
+Patch5:         make-4.2.1-glob-fix-2.patch
+Patch6:         make-4.2.1-glob-fix.patch
+Patch7:         make-4.2.1-glob-fix-3.patch
+Patch8:         make-4.2.1-test-driver.patch
+
+Patch6000:      src-makeint.h-Use-pid_t-to-store-PIDs-of-int.patch
+Patch6001:      Queue-failed-fork-etc.-to-be-handled-like-any-other-.patch
+Patch6002:      src-job.c-reap_children-Fix-inverted-win-lose-messag.patch
+Patch6003:      SV-54233-Preserve-higher-command_state-values-on-als.patch
+Patch6004:      src-main.c-main-Set-jobserver-permissions-before-re-.patch
+Patch6005:      main.c-main-SV-48274-Allow-j-in-makefile-MAKEFLAGS-v.patch
 
 BuildRequires:	gcc git autoconf automake procps
-BuildRequires:	guile-devel perl-interpreter
+BuildRequires:	guile-devel perl-interpreter make
 Requires(post): /sbin/install-info
 Requires(preun): /sbin/install-info
 
@@ -35,17 +46,11 @@ Requires:       %{name} = %{version}-%{release}
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
-%package	help
-Summary: 	Doc files for %{name}
-Requires:	man
-Buildarch:	noarch
-
-%description 	help
-The %{name}-help package contains doc files for %{name}.
+%package_help
 
 %prep
 %autosetup -n %{name}-%{version} -p1
-rm -f tests/scripts/features/parallelism.orig
+#rm -f tests/scripts/features/parallelism.orig
 
 %build
 touch configure aclocal.m4 Makefile.in
@@ -69,7 +74,6 @@ if [ -f %{_infodir}/make.info.gz ]; then
     /sbin/install-info %{_infodir}/make.info.gz %{_infodir}/dir --entry="* Make: (make). The GNU make utility." || :
 fi
 
-
 %preun
 if [ $1 = 0 ]; then
     if [ -f %{_infodir}/make.info.gz ]; then
@@ -78,8 +82,8 @@ if [ $1 = 0 ]; then
 fi
 
 %files -f %{name}.lang
-%doc AUTHORS
-%license COPYING
+%license COPYING AUTHORS
+%doc README
 %{_bindir}/*
 %{_includedir}/*
 
@@ -87,16 +91,10 @@ fi
 %{_includedir}/*
 
 %files help
-%doc NEWS README
+%doc NEWS 
 %{_mandir}/*/*
 %{_infodir}/*
 
 %changelog
-* Tue Sep 27 2019 luhuaxin <luhuaxin@huawei.com> - 1:4.2.90-2
-- Type: enhancement
-- ID: NA
-- SUG: NA
-- DESC: move README file to main package, fix last changelog
-
-* Tue Sep 10 2019 luhuaxin <luhuaxin@huawei.com> - 1:4.2.90-1
+* Wed Oct 30 2019 openEuler Buildteam <buildteam@openeuler.org> - 1:4.2.1-11
 - Package init
