@@ -1,21 +1,15 @@
 Name:		make
 Epoch: 		1
 Version:	4.2.1
-Release:        11
+Release:        12
 Summary:	A tool which controls the generation of executables and non-source files of a program
 License:	GPLv3+
 URL:		http://www.gnu.org/software/make/
 Source0:	http://ftp.gnu.org/gnu/%{name}/%{name}-%{version}.tar.bz2
 
-Patch0:         make-4.0-newlines.patch
-Patch1:         make-4.0-noclock_gettime.patch
-Patch2:         make-4.0-weird-shell.patch
-Patch3:         make-4.2-getcwd.patch
-Patch4:         make-4.2-j8k.patch
-Patch5:         make-4.2.1-glob-fix-2.patch
-Patch6:         make-4.2.1-glob-fix.patch
-Patch7:         make-4.2.1-glob-fix-3.patch
-Patch8:         make-4.2.1-test-driver.patch
+Patch1:         make-4.0-weird-shell.patch
+Patch2:         make-4.2-j8k.patch
+Patch3:         make-4.2.1-test-driver.patch
 
 Patch6000:      src-makeint.h-Use-pid_t-to-store-PIDs-of-int.patch
 Patch6001:      Queue-failed-fork-etc.-to-be-handled-like-any-other-.patch
@@ -23,6 +17,11 @@ Patch6002:      src-job.c-reap_children-Fix-inverted-win-lose-messag.patch
 Patch6003:      SV-54233-Preserve-higher-command_state-values-on-als.patch
 Patch6004:      src-main.c-main-Set-jobserver-permissions-before-re-.patch
 Patch6005:      main.c-main-SV-48274-Allow-j-in-makefile-MAKEFLAGS-v.patch
+Patch6006:      configure.ac-Support-GLIBC-glob-interface-version-2.patch
+Patch6007:      glob-Do-not-assume-glibc-glob-internals.patch
+Patch6008:      configure-Support-GLIBC-glob-interface-version-2.patch
+
+
 
 BuildRequires:	gcc git autoconf automake procps
 BuildRequires:	guile-devel perl-interpreter make
@@ -96,5 +95,8 @@ fi
 %{_infodir}/*
 
 %changelog
+* Sat Jan 11 2020 openEuler Buildteam <buildteam@openeuler.org> - 1:4.2.1-12
+- Delete redundant files
+
 * Wed Oct 30 2019 openEuler Buildteam <buildteam@openeuler.org> - 1:4.2.1-11
 - Package init

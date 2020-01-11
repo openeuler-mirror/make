@@ -1,0 +1,28 @@
+From 9fbc7566a76d72f9cfd697eb163f7c310d0bb7c5 Mon Sep 17 00:00:00 2001
+From: openeuler-basic <shenyangyang4@huawei.com>
+Date: Sat, 11 Jan 2020 17:07:07 +0800
+Subject: [PATCH] configure Support GLIBC glob interface version 2
+
+---
+ configure | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+diff --git a/configure b/configure
+index bc62691..354d932 100755
+--- a/configure
++++ b/configure
+@@ -11481,10 +11481,9 @@ else
+ #include <glob.h>
+ #include <fnmatch.h>
+ 
+-#define GLOB_INTERFACE_VERSION 1
+ #if !defined _LIBC && defined __GNU_LIBRARY__ && __GNU_LIBRARY__ > 1
+ # include <gnu-versions.h>
+-# if _GNU_GLOB_INTERFACE_VERSION == GLOB_INTERFACE_VERSION
++# if _GNU_GLOB_INTERFACE_VERSION == 1 || _GNU_GLOB_INTERFACE_VERSION == 2
+    gnu glob
+ # endif
+ #endif
+-- 
+1.8.3.1
+
