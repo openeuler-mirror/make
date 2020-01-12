@@ -1,7 +1,7 @@
 From 48c8a116a914a325a0497721f5d8b58d5bba34d4 Mon Sep 17 00:00:00 2001
 From: Paul Smith <psmith@gnu.org>
 Date: Sun, 19 Nov 2017 15:09:16 -0500
-Subject: * configure.ac: Support GLIBC glob interface version 2
+Subject: [PATCH] * configure.ac: Support GLIBC glob interface version 2
 
 ---
  configure.ac | 3 +--
@@ -24,5 +24,5 @@ index 8c72568..4710832 100644
  # endif
  #endif],
 -- 
-cgit v1.0-41-gc330
+1.8.3.1
 

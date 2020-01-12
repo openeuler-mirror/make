@@ -1,7 +1,7 @@
 From 193f1e81edd6b1b56b0eb0ff8aa4b41c7b4257b4 Mon Sep 17 00:00:00 2001
 From: Paul Eggert <eggert@cs.ucla.edu>
 Date: Sun, 24 Sep 2017 09:12:58 -0400
-Subject: glob: Do not assume glibc glob internals.
+Subject: [PATCH] glob: Do not assume glibc glob internals.
 
 It has been proposed that glibc glob start using gl_lstat,
 which the API allows it to do.  GNU 'make' should not get in
@@ -63,5 +63,5 @@ index adbb8a9..c343e4c 100644
  
  void
 -- 
-cgit v1.0-41-gc330
+1.8.3.1
 
