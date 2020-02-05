@@ -1,7 +1,7 @@
 Name:		make
 Epoch: 		1
 Version:	4.2.1
-Release:        13
+Release:        14
 Summary:	A tool which controls the generation of executables and non-source files of a program
 License:	GPLv3+
 URL:		http://www.gnu.org/software/make/
@@ -49,7 +49,6 @@ developing applications that use %{name}.
 
 %prep
 %autosetup -n %{name}-%{version} -p1
-#rm -f tests/scripts/features/parallelism.orig
 
 %build
 touch configure aclocal.m4 Makefile.in
@@ -66,7 +65,13 @@ rm -f %{buildroot}/%{_infodir}/dir
 %find_lang %name
 
 %check
-#/usr/bin/env LANG=C make check && true
+# check will fail if running the test with -j2
+# http://savannah.gnu.org/bugs/?func=detailitem&item_id=53152
+if [ "%{_smp_mflags}" = "-j2" ]; then
+    echo "test will fail with make -j2 check"
+else
+/usr/bin/env LANG=C make check
+fi
 
 %post
 if [ -f %{_infodir}/make.info.gz ]; then
@@ -95,8 +100,11 @@ fi
 %{_infodir}/*
 
 %changelog
+* Tue Feb 11 2020 openEuler Buildteam <buildteam@openeuler.org> - 1:4.2.1-14
+- Avoid the build failure of test suite that caused by -j2
+
 * Wed Jan 22 2020 openEuler Buildteam <buildteam@openeuler.org> - 1:4.2.1-13
-- resolve compile problems.
+- Resolve compile problems.
 
 * Sat Jan 11 2020 openEuler Buildteam <buildteam@openeuler.org> - 1:4.2.1-12
 - Delete redundant files
