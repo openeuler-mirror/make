@@ -1,7 +1,7 @@
 Name:		make
 Epoch: 		1
 Version:	4.2.1
-Release:        14
+Release:        15
 Summary:	A tool which controls the generation of executables and non-source files of a program
 License:	GPLv3+
 URL:		http://www.gnu.org/software/make/
@@ -39,7 +39,7 @@ for it, so that it is possible to use Make to build and install the program.
 
 %package        devel
 Summary:        Development files for %{name}
-Requires:       %{name} = %{version}-%{release}
+Requires:       %{name} = %{epoch}:%{version}-%{release}
 
 %description    devel
 The %{name}-devel package contains libraries and header files for
@@ -100,6 +100,9 @@ fi
 %{_infodir}/*
 
 %changelog
+* Mon Feb 24 2020 openEuler Buildteam <buildteam@openeuler.org> - 1:4.2.1-15
+- Revise requires of make-devel
+
 * Tue Feb 11 2020 openEuler Buildteam <buildteam@openeuler.org> - 1:4.2.1-14
 - Avoid the build failure of test suite that caused by -j2
 
