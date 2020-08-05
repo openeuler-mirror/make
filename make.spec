@@ -1,27 +1,14 @@
 Name:		make
 Epoch: 		1
-Version:	4.2.1
-Release:        15
+Version:	4.3
+Release:        1
 Summary:	A tool which controls the generation of executables and non-source files of a program
 License:	GPLv3+
 URL:		http://www.gnu.org/software/make/
 Source0:	http://ftp.gnu.org/gnu/%{name}/%{name}-%{version}.tar.bz2
 
-Patch1:         make-4.0-weird-shell.patch
-Patch2:         make-4.2-j8k.patch
-Patch3:         make-4.2.1-test-driver.patch
-
-Patch6000:      src-makeint.h-Use-pid_t-to-store-PIDs-of-int.patch
-Patch6001:      Queue-failed-fork-etc.-to-be-handled-like-any-other-.patch
-Patch6002:      src-job.c-reap_children-Fix-inverted-win-lose-messag.patch
-Patch6003:      SV-54233-Preserve-higher-command_state-values-on-als.patch
-Patch6004:      src-main.c-main-Set-jobserver-permissions-before-re-.patch
-Patch6005:      main.c-main-SV-48274-Allow-j-in-makefile-MAKEFLAGS-v.patch
-Patch6006:      configure.ac-Support-GLIBC-glob-interface-version-2.patch
-Patch6007:      glob-Do-not-assume-glibc-glob-internals.patch
-Patch6008:      configure-Support-GLIBC-glob-interface-version-2.patch
-
-
+Patch0:         make-4.3-weird-shell.patch
+Patch1:         make-4.3-j8k.patch
 
 BuildRequires:	gcc git autoconf automake procps
 BuildRequires:	guile-devel perl-interpreter make
@@ -100,6 +87,9 @@ fi
 %{_infodir}/*
 
 %changelog
+* Tue Jul 28 2020 wangchen <wangchen137@huawei.com> - 1:4.3-1
+- Update to 4.3
+
 * Mon Feb 24 2020 openEuler Buildteam <buildteam@openeuler.org> - 1:4.2.1-15
 - Revise requires of make-devel
 
