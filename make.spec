@@ -1,11 +1,11 @@
 Name:		make
 Epoch: 		1
 Version:	4.3
-Release:        1
+Release:        2
 Summary:	A tool which controls the generation of executables and non-source files of a program
 License:	GPLv3+
 URL:		http://www.gnu.org/software/make/
-Source0:	http://ftp.gnu.org/gnu/%{name}/%{name}-%{version}.tar.bz2
+Source0:	http://ftp.gnu.org/gnu/%{name}/%{name}-%{version}.tar.gz
 
 Patch0:         make-4.3-weird-shell.patch
 Patch1:         make-4.3-j8k.patch
@@ -87,6 +87,9 @@ fi
 %{_infodir}/*
 
 %changelog
+* Tue Sep 8 2020 wangchen <wangchen137@huawei.com> - 1:4.3-2
+- Modify the URL of Source0
+
 * Tue Jul 28 2020 wangchen <wangchen137@huawei.com> - 1:4.3-1
 - Update to 4.3
 
