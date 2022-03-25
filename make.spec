@@ -1,7 +1,7 @@
 Name:		make
 Epoch: 		1
 Version:	4.3
-Release:        2
+Release:        3
 Summary:	A tool which controls the generation of executables and non-source files of a program
 License:	GPLv3+
 URL:		http://www.gnu.org/software/make/
@@ -9,6 +9,9 @@ Source0:	http://ftp.gnu.org/gnu/%{name}/%{name}-%{version}.tar.gz
 
 Patch0:         make-4.3-weird-shell.patch
 Patch1:         make-4.3-j8k.patch
+%ifarch riscv64
+Patch50001:     fix-57962.patch
+%endif
 
 BuildRequires:	gcc git autoconf automake procps
 BuildRequires:	guile-devel perl-interpreter make
@@ -87,6 +90,9 @@ fi
 %{_infodir}/*
 
 %changelog
+* Thu Mar 24 2022 jingwiw <ixoote@gmail.com> - 1:4.3-3
+- fix bug #57962
+
 * Tue Sep 8 2020 wangchen <wangchen137@huawei.com> - 1:4.3-2
 - Modify the URL of Source0
 
